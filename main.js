@@ -10,16 +10,25 @@ const parseJson = (response) => {
 };
 
 async function getGarchomp() {
-  const response = await fetch('https://pokeapi.co/api/v2/pokemon/garchomp');
-  const garchompData = await response.json();
+  const garchompRes = await fetch('https://pokeapi.co/api/v2/pokemon/garchomp');
+  const garchompData = await garchompRes.json();
   console.log(garchompData);
 
-  document
-    .querySelector('body')
-    .insertAdjacentHTML(
-      'beforeend',
-      `<div><h2>${garchompData.name}</h2><span>Pokemon Info</span></div>`,
-    );
+  const body = document.querySelector('body');
+
+  const speciesRes = await fetch(garchompData.species.url);
+  const speciesData = await speciesRes.json();
+  console.log(speciesData);
+
+  body.insertAdjacentHTML(
+    'beforeend',
+    `<div>
+      <h2>${garchompData.name}</h2>
+      <h3>Pokemon Info</h3>
+      <p>ID: ${speciesData.id}</p>
+      <p>${speciesData.capture_rate}</p>
+    </div>`,
+  );
 
   // fetch is a javascript Promise-based web api that lives in the browser
   // we are chaining then methods to consume each promise as we go
