@@ -10,7 +10,8 @@ const parseJson = (response) => {
 };
 
 async function getGarchomp() {
-  const garchompRes = await fetch('https://pokeapi.co/api/v2/pokemon/garchomp');
+  const search = document.querySelector('input').value;
+  const garchompRes = await fetch(`https://pokeapi.co/api/v2/pokemon/${search}`);
   const garchompData = await garchompRes.json();
   console.log(garchompData);
 
