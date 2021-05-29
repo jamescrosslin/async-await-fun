@@ -15,9 +15,16 @@ function getGarchomp() {
   fetch('https://pokeapi.co/api/v2/pokemon/garchomp')
     .then(parseJson)
     .then((garchompData) => {
+      console.log(garchompData);
       document
         .querySelector('body')
-        .insertAdjacentHTML('beforeend', `<h2>This HTML was dynamically injected</h2>`);
+        .insertAdjacentHTML(
+          'beforeend',
+          `<div><h2>${garchompData.name}</h2><span>Pokemon Info</span></div>`,
+        );
+      fetch(garchompData.species.url)
+        .then(parseJSON)
+        .then((garcompSepeciesData) => {});
     });
 }
 
