@@ -9,6 +9,10 @@ const parseIt = (response) => {
   return response.json();
 };
 
-// fetch is a javascript Promise-based web api that lives in the browser
-// we are chaining then methods to consume each promise as we go
-fetch('https://pokeapi.co/api/v2/pokemon/garchomp').then(parseIt).then(console.log);
+function getGarchomp() {
+  // fetch is a javascript Promise-based web api that lives in the browser
+  // we are chaining then methods to consume each promise as we go
+  fetch('https://pokeapi.co/api/v2/pokemon/garchomp').then(parseIt).then(console.log);
+}
+
+document.getElementById('pokeButton').addEventListener('click', getGarchomp);
